@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 [ExecuteAlways]
-public class CoordinateLibrary : MonoBehaviour
+public class CoordinateLabeler : MonoBehaviour
 {
     [SerializeField] Color defaultColor = Color.white;
     [SerializeField] Color blockedColor = Color.gray;
