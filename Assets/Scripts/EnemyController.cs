@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] List<WaypointScript> path = new List<WaypointScript>();
-    [SerializeField] [Range(0f, 5f)] float speed = 1f;
+    [SerializeField][Range(0f, 5f)] float speed = 1f;
+
     void OnEnable()
     {
         FindPath();
@@ -13,17 +14,16 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(FollowPath());
     }
 
-
     void Update()
     {
-        
+
     }
 
     IEnumerator FollowPath()
     {
-        foreach(WaypointScript waypoint in path)
+        foreach (WaypointScript waypoint in path)
         {
-            Debug.Log(waypoint.name);
+            //Debug.Log(waypoint.name);
             Vector3 startPosition = transform.position;
             Vector3 endPosition = waypoint.transform.position;
 
@@ -42,13 +42,14 @@ public class EnemyController : MonoBehaviour
         }
         FinishPath();
     }
+
     void FindPath()
     {
         path.Clear();
 
         GameObject parent = GameObject.FindGameObjectWithTag("Path");
 
-        foreach(Transform child in parent.transform)
+        foreach (Transform child in parent.transform)
         {
             WaypointScript waypoint = child.GetComponent<WaypointScript>();
 
@@ -57,8 +58,6 @@ public class EnemyController : MonoBehaviour
                 path.Add(waypoint);
             }
         }
-
-        FinishPath();
     }
 
     void ReturnToStart()
