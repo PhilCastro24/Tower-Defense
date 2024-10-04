@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class WaypointScript : MonoBehaviour
 {
-    [SerializeField] bool isPlaycable;
+    [SerializeField] bool isPlaceable;
     [SerializeField] GameObject towerPrefab;
+
+    public bool IsPlaceable
+    {
+        get { return isPlaceable; }
+    }
 
     void OnMouseDown()
     {
-        if (isPlaycable)
+        if (isPlaceable)
         {
             //Debug.Log("You clicked on " + transform.name);
 
             Instantiate(towerPrefab, transform.position, Quaternion.identity);
-            isPlaycable = false;
+            isPlaceable = false;
         }
     }
 }

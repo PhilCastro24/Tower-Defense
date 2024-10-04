@@ -89,6 +89,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6401905439890478728, guid: 37d9ce4063f095649afeb63fc6f452c7,
         type: 3}
+      propertyPath: isPlaceable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6401905439890478728, guid: 37d9ce4063f095649afeb63fc6f452c7,
+        type: 3}
       propertyPath: isPlaycable
       value: 0
       objectReference: {fileID: 0}
