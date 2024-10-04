@@ -17,7 +17,6 @@ public class CoordinateLibrary : MonoBehaviour
     private void Awake()
     {
         label = GetComponentInChildren<TextMeshPro>();
-        label.enabled = true;
 
         waypoint = GetComponentInParent<WaypointScript>();
         ColorCoordinates();
