@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     [SerializeField] bool isPlaceable;
+    [SerializeField] bool isWalkable;
     [SerializeField] Tower towerPrefab;
 
     GridManager gridManager;
@@ -29,23 +30,36 @@ public class Tile : MonoBehaviour
         {
             coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
 
-            if (!IsPlaceable)
+            if (gridManager != null)
             {
-                gridManager.BlockNode(coordinates);
+                if (!IsPlaceable)
+                {
+                    gridManager.BlockNode(coordinates);
+                }
+                else if (!isWalkable)
+                {
+                    gridManager.BlockNode(coordinates);
+                }
             }
         }
     }
 
     void OnMouseDown()
     {
-        if (gridManager.GetNode(coordinates).isWalkable && !pathfinder.WillBlockPath(coordinates))
+        if (isPlaceable)
         {
             bool isSuccessful = towerPrefab.CreateTower(towerPrefab, transform.position);
 
             if (isSuccessful)
             {
+                isPlaceable = false;
+                isWalkable = false;
                 gridManager.BlockNode(coordinates);
                 pathfinder.NotifyReceivers();
+            }
+            else
+            {
+                Debug.Log("Cannot Place Tower");
             }
         }
     }
