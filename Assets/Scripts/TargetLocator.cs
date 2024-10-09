@@ -52,6 +52,12 @@ public class TargetLocator : MonoBehaviour
         }
 
         target = closestTarget;
+
+        RotateCannon cannon = weapon.GetComponent<RotateCannon>();
+        if (cannon != null)
+        {
+            cannon.target = target;
+        }
     }
 
     void Attack(bool isActive)
