@@ -42,7 +42,7 @@ public class Pathfinder : MonoBehaviour
             grid = gridManager.Grid;
 
             startNode = gridManager.Grid[startCoordinates];
-            endNode = gridManager.Grid[startCoordinates];
+            endNode = gridManager.Grid[endCoordinates];
         }
     }
 
@@ -92,7 +92,7 @@ public class Pathfinder : MonoBehaviour
         while (frontier.Count > 0 && isRunning)
         {
             currentSearchNode = frontier.Dequeue();
-            currentSearchNode.isexplored = true;
+            currentSearchNode.isExplored = true;
             ExploreNeighbors();
             if (currentSearchNode.coordinates == endCoordinates)
             {

@@ -6,16 +6,6 @@ public class Tower : MonoBehaviour
 {
     [SerializeField] int cost = 75;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     public bool CreateTower(Tower tower, Vector3 position)
     {
         Bank bank = FindObjectOfType<Bank>();

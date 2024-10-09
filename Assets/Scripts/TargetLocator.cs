@@ -12,8 +12,8 @@ public class TargetLocator : MonoBehaviour
 
     void Update()
     {
+        FindClosestTarget();
         AimWeapon();
-        FindClosestTaret();
     }
 
     void AimWeapon()
@@ -32,7 +32,7 @@ public class TargetLocator : MonoBehaviour
         }
     }
 
-    void FindClosestTaret()
+    void FindClosestTarget()
     {
         EnemyController[] enemies = FindObjectsOfType<EnemyController>();
 
@@ -40,7 +40,7 @@ public class TargetLocator : MonoBehaviour
 
         float maxDistance = Mathf.Infinity;
 
-        foreach(EnemyController enemy in enemies)
+        foreach (EnemyController enemy in enemies)
         {
             float targetDistance = Vector3.Distance(transform.position, enemy.transform.position);
 
@@ -50,6 +50,7 @@ public class TargetLocator : MonoBehaviour
                 maxDistance = targetDistance;
             }
         }
+
         target = closestTarget;
     }
 

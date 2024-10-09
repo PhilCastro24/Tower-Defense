@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(TextMeshPro))]
 public class CoordinateLabeler : MonoBehaviour
 {
-    [SerializeField] Color defaultColor = Color.white;
+    [SerializeField] Color defaultColor = Color.black;
     [SerializeField] Color blockedColor = Color.gray;
     [SerializeField] Color exploredColor = Color.yellow;
     [SerializeField] Color pathColor = Color.red;
@@ -20,9 +20,10 @@ public class CoordinateLabeler : MonoBehaviour
     private void Awake()
     {
         label = GetComponentInChildren<TextMeshPro>();
-        gridManager = FindObjectOfType<GridManager>();
+        label.enabled = true;
 
-        SetLabelColor();
+        gridManager = FindObjectOfType<GridManager>();
+        DisplayCoordinates();
     }
 
     void Update()
@@ -44,7 +45,7 @@ public class CoordinateLabeler : MonoBehaviour
         coordinates.y =
             Mathf.RoundToInt(transform.parent.position.z / UnityEditor.EditorSnapSettings.move.z);
 
-        label.text = coordinates.x + " ; " + coordinates.y;
+        label.text = coordinates.x + " , " + coordinates.y;
     }
 
     void UpdateObjectName()
@@ -66,6 +67,7 @@ public class CoordinateLabeler : MonoBehaviour
         {
             return;
         }
+
         Node node = gridManager.GetNode(coordinates);
 
         if (node == null)
@@ -81,7 +83,7 @@ public class CoordinateLabeler : MonoBehaviour
         {
             label.color = pathColor;
         }
-        else if (node.isexplored)
+        else if (node.isExplored)
         {
             label.color = exploredColor;
         }

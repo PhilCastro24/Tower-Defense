@@ -8,11 +8,10 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int maxHitPoints = 5;
 
-    [Tooltip("Adds this amount to myxHitPoints when Enemy dies")]
+    [Tooltip("Adds this amount to maxHitPoints when Enemy dies")]
     [SerializeField] int difficultRamp = 1;
 
     int currentHitPoints = 0;
-
 
     Enemy enemy;
 
@@ -26,7 +25,7 @@ public class EnemyHealth : MonoBehaviour
         enemy = GetComponent<Enemy>();
     }
 
-    private void OnParticleCollision(GameObject other)
+    void OnParticleCollision(GameObject other)
     {
         ProcessHit();
     }

@@ -15,14 +15,10 @@ public class Bank : MonoBehaviour
         get { return currentBalance; }
     }
 
-    void Start()
-    {
-        UpdateDisplay();
-    }
-
     void Awake()
     {
         currentBalance = startingBalance;
+        UpdateDisplay();
     }
 
     public void Deposit(int amount)
@@ -49,6 +45,6 @@ public class Bank : MonoBehaviour
 
     void UpdateDisplay()
     {
-        displayGold.text = "Gold: "+ currentBalance;
+        displayGold.text = "Gold: " + currentBalance;
     }
 }

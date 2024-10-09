@@ -54,7 +54,7 @@ public class GridManager : MonoBehaviour
     {
         Vector2Int coordinates = new Vector2Int();
         coordinates.x = Mathf.RoundToInt(position.x / UnityEditor.EditorSnapSettings.move.x);
-        coordinates.y = Mathf.RoundToInt(position.y / UnityEditor.EditorSnapSettings.move.y);
+        coordinates.y = Mathf.RoundToInt(position.z / UnityEditor.EditorSnapSettings.move.y);
 
         return coordinates;
     }
@@ -70,10 +70,10 @@ public class GridManager : MonoBehaviour
 
     public void ResetNodes()
     {
-        foreach(KeyValuePair<Vector2Int,Node>entry in grid)
+        foreach (KeyValuePair<Vector2Int, Node> entry in grid)
         {
             entry.Value.connectedTo = null;
-            entry.Value.isexplored = false;
+            entry.Value.isExplored = false;
             entry.Value.isPath = false;
         }
     }

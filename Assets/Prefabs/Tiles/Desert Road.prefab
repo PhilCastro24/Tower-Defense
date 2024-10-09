@@ -90,22 +90,22 @@ PrefabInstance:
     - target: {fileID: 642634283775978949, guid: 10f3d8dd94a991644829658e10ab033b,
         type: 3}
       propertyPath: m_text
-      value: 1 ; 0
+      value: -15 ; -12
       objectReference: {fileID: 0}
     - target: {fileID: 6996289330054450645, guid: 10f3d8dd94a991644829658e10ab033b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8656158
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6996289330054450645, guid: 10f3d8dd94a991644829658e10ab033b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.851738
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6996289330054450645, guid: 10f3d8dd94a991644829658e10ab033b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.0592422
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6996289330054450645, guid: 10f3d8dd94a991644829658e10ab033b,
         type: 3}
@@ -115,17 +115,17 @@ PrefabInstance:
     - target: {fileID: 6996289330054450645, guid: 10f3d8dd94a991644829658e10ab033b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6996289330054450645, guid: 10f3d8dd94a991644829658e10ab033b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6996289330054450645, guid: 10f3d8dd94a991644829658e10ab033b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6996289330054450645, guid: 10f3d8dd94a991644829658e10ab033b,
         type: 3}
@@ -147,6 +147,12 @@ PrefabInstance:
       propertyPath: isPlaceable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9093006312916153038, guid: 10f3d8dd94a991644829658e10ab033b,
+        type: 3}
+      propertyPath: towerPrefab
+      value: 
+      objectReference: {fileID: -3747378529147337163, guid: 8f55902e879d7f94db5b7645e26bd615,
+        type: 3}
     - target: {fileID: 9144524887787728160, guid: 10f3d8dd94a991644829658e10ab033b,
         type: 3}
       propertyPath: m_Name
