@@ -5,8 +5,8 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] float spawnTimer = 1f;
-    [SerializeField] int poolSize = 5;
+    [SerializeField] [Range(0.1f, 30f)] float spawnTimer = 1f;
+    [SerializeField] [Range(1f, 50)] int poolSize = 5;
 
     GameObject[] pool;
 
@@ -14,14 +14,12 @@ public class ObjectPool : MonoBehaviour
     {
         PopulatePool();
     }
-
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SpawnEnemy());
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 

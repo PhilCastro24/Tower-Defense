@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] List<WaypointScript> path = new List<WaypointScript>();
     [SerializeField][Range(0f, 5f)] float speed = 1f;
+
+    Enemy enemy;
+    GridManager gridManager;
+    Pathfinder pathfinder;
+
+    List<Node> path = new List<Node>();
+
+    void Awake()
+    {
+        enemy = GetComponent<Enemy>();
+        gridManager = FindObjectOfType<GridManager>();
+        pathfinder = FindObjectOfType<Pathfinder>();
+    }
 
     void OnEnable()
     {
-        FindPath();
         ReturnToStart();
-        StartCoroutine(FollowPath());
+        RecalculatePath(true);
     }
 
     void Update()
@@ -21,11 +32,11 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        foreach (WaypointScript waypoint in path)
+        for (int i=1;i<path.Count;i++)
         {
             //Debug.Log(waypoint.name);
             Vector3 startPosition = transform.position;
-            Vector3 endPosition = waypoint.transform.position;
+            Vector3 endPosition = gridManager.GetPositionFromCoordinates(path[i].coordinates);
 
             float travelPercent = 0f;
 
@@ -43,30 +54,33 @@ public class EnemyController : MonoBehaviour
         FinishPath();
     }
 
-    void FindPath()
+    void RecalculatePath(bool resetPath)
     {
-        path.Clear();
+        Vector2Int coordinates = new Vector2Int();
 
-        GameObject parent = GameObject.FindGameObjectWithTag("Path");
-
-        foreach (Transform child in parent.transform)
+        if (resetPath)
         {
-            WaypointScript waypoint = child.GetComponent<WaypointScript>();
-
-            if (waypoint != null)
-            {
-                path.Add(waypoint);
-            }
+            coordinates = pathfinder.StartCoordinates;
         }
+        else
+        {
+            coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
+        }
+
+        StopAllCoroutines();
+        path.Clear();
+        path = pathfinder.GetNewPath(coordinates);
+        StartCoroutine(FollowPath());
     }
 
     void ReturnToStart()
     {
-        transform.position = path[0].transform.position;
+        transform.position = gridManager.GetPositionFromCoordinates(pathfinder.StartCoordinates);
     }
 
     void FinishPath()
     {
+        enemy.StealGold();
         gameObject.SetActive(false);
     }
 }
