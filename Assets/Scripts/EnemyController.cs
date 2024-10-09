@@ -25,14 +25,9 @@ public class EnemyController : MonoBehaviour
         RecalculatePath(true);
     }
 
-    void Update()
-    {
-
-    }
-
     IEnumerator FollowPath()
     {
-        for (int i=1;i<path.Count;i++)
+        for (int i = 1; i < path.Count; i++)
         {
             //Debug.Log(waypoint.name);
             Vector3 startPosition = transform.position;
@@ -48,9 +43,8 @@ public class EnemyController : MonoBehaviour
                 transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
                 yield return new WaitForEndOfFrame();
             }
-
-
         }
+
         FinishPath();
     }
 

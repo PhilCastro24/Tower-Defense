@@ -14,11 +14,6 @@ public class Enemy : MonoBehaviour
         bank = FindObjectOfType<Bank>();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void RewardGold()
     {
         if (bank == null)
@@ -28,6 +23,7 @@ public class Enemy : MonoBehaviour
 
         bank.Deposit(goldReward);
     }
+
     public void StealGold()
     {
         if (bank == null)
@@ -37,6 +33,4 @@ public class Enemy : MonoBehaviour
 
         bank.Withdraw(goldPenalty);
     }
-
-
 }
