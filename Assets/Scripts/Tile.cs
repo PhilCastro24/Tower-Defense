@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     [SerializeField] bool isPlaceable;
+    [SerializeField] bool isWalkable = true;
     [SerializeField] Tower towerPrefab;
 
     GridManager gridManager;
@@ -14,10 +15,21 @@ public class Tile : MonoBehaviour
 
     public bool IsPlaceable
     {
-        get { return isPlaceable; }
+        get
+        {
+            return isPlaceable;
+        }
     }
 
-    private void Awake()
+    public bool IsWalkable
+    {
+        get
+        {
+            return isWalkable;
+        }
+    }
+
+    void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
         pathfinder = FindObjectOfType<Pathfinder>();
@@ -29,7 +41,8 @@ public class Tile : MonoBehaviour
         {
             coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
 
-            if (!IsPlaceable)
+            // Block the node in the grid only if it is not walkable
+            if (!isWalkable)
             {
                 gridManager.BlockNode(coordinates);
             }
@@ -38,15 +51,35 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (gridManager.GetNode(coordinates).isWalkable && !pathfinder.WillBlockPath(coordinates))
+        Node node = gridManager.GetNode(coordinates);
+
+        // Check if the tile is placeable
+        if (!isPlaceable)
+        {
+            Debug.Log("Cannot place tower here. Tile is set to !isPlaceable or another tower already was placed here.");
+            return;
+        }
+
+        // Check if placing a tower will not block the path
+        if (node != null && !pathfinder.WillBlockPath(coordinates))
         {
             bool isSuccessful = towerPrefab.CreateTower(towerPrefab, transform.position);
 
             if (isSuccessful)
             {
+                // Mark the node as blocked for pathfinding
                 gridManager.BlockNode(coordinates);
+
+                // Notify the pathfinder to recalculate paths
                 pathfinder.NotifyReceivers();
+
+                // Set the tile to be non-placeable since a tower is now placed
+                isPlaceable = false;
             }
+        }
+        else
+        {
+            Debug.Log("Cannot place tower here. It would block the path.");
         }
     }
 }

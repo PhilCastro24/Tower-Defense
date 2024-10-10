@@ -47,6 +47,7 @@ public class GridManager : MonoBehaviour
         if (grid.ContainsKey(coordinates))
         {
             grid[coordinates].isWalkable = false;
+            //Debug.Log("Node blocked: " + coordinates);
         }
     }
 
