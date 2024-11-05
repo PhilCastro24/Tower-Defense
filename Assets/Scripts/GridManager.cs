@@ -5,6 +5,7 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     [SerializeField] Vector2Int gridSize;
+    [SerializeField] Vector2 gridCellSize = new Vector2(10f, 10f);
     Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
 
     public Dictionary<Vector2Int, Node> Grid
@@ -54,8 +55,8 @@ public class GridManager : MonoBehaviour
     public Vector2Int GetCoordinatesFromPosition(Vector3 position)
     {
         Vector2Int coordinates = new Vector2Int();
-        coordinates.x = Mathf.RoundToInt(position.x / UnityEditor.EditorSnapSettings.move.x);
-        coordinates.y = Mathf.RoundToInt(position.z / UnityEditor.EditorSnapSettings.move.y);
+        coordinates.x = Mathf.RoundToInt(position.x / gridCellSize.x);
+        coordinates.y = Mathf.RoundToInt(position.z / gridCellSize.y);
 
         return coordinates;
     }
@@ -63,9 +64,8 @@ public class GridManager : MonoBehaviour
     public Vector3 GetPositionFromCoordinates(Vector2Int coordinates)
     {
         Vector3 position = new Vector3();
-        position.x = coordinates.x * UnityEditor.EditorSnapSettings.move.x;
-        position.z = coordinates.y * UnityEditor.EditorSnapSettings.move.z;
-
+        position.x = coordinates.x * gridCellSize.x;
+        position.z = coordinates.y * gridCellSize.y;
         return position;
     }
 

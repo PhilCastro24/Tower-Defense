@@ -23,21 +23,21 @@ public class CoordinateLabeler : MonoBehaviour
         label.enabled = true;
 
         gridManager = FindObjectOfType<GridManager>();
-        DisplayCoordinates();
+        //DisplayCoordinates();
     }
 
     void Update()
     {
         if (!Application.isPlaying)
         {
-            DisplayCoordinates();
+            //DisplayCoordinates();
             UpdateObjectName();
         }
         SetLabelColor();
         ToggleLabels();
     }
 
-    void DisplayCoordinates()
+    /*void DisplayCoordinates()
     {
         coordinates.x =
             Mathf.RoundToInt(transform.parent.position.x / UnityEditor.EditorSnapSettings.move.x);
@@ -46,7 +46,7 @@ public class CoordinateLabeler : MonoBehaviour
             Mathf.RoundToInt(transform.parent.position.z / UnityEditor.EditorSnapSettings.move.z);
 
         label.text = coordinates.x + " , " + coordinates.y;
-    }
+    }*/
 
     void UpdateObjectName()
     {
